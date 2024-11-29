@@ -1,4 +1,4 @@
-package com.example.easydechet;
+/*package com.example.easydechet;
 
 import android.content.ContentValues;
 import android.os.Build;
@@ -61,3 +61,5 @@ public class FirstFragment extends Fragment {
 
 
 }
+
+ */

@@ -19,6 +19,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
@@ -76,96 +77,43 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_PERMISSIONS = 101;
-    private static final int REQUEST_IMAGE_CAPTURE = 102;
-    private static final String[] REQUIRED_PERMISSIONS = new String[] {
-            Manifest.permission.CAMERA
-    };
-
-    private ImageView imageView;
-    private Uri photoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = findViewById(R.id.imageView); // ImageView pour afficher la photo
-        Button buttonTakePhoto = findViewById(R.id.buttonTakePhoto); // Bouton pour prendre une photo
 
-        // Vérifiez les permissions à l'ouverture
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
-        }
+        Button btn = (Button) findViewById(R.id.btnl);
 
-        buttonTakePhoto.setOnClickListener(v -> {
-            if (allPermissionsGranted()) {
-                takePhoto();
-            } else {
-                Toast.makeText(this, "Camera permission is required", Toast.LENGTH_SHORT).show();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PrendrePhoto.class);
+                startActivity(intent);
             }
         });
-    }
 
-    private boolean allPermissionsGranted() {
-        for (String permission : REQUIRED_PERMISSIONS) {
-            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    private void takePhoto() {
-        // Créer une entrée dans MediaStore pour stocker l'image capturée
-        ContentResolver resolver = getContentResolver();
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "photo_" + System.currentTimeMillis() + ".jpg");
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/MyApp");
-        }
-
-        // Insérer dans MediaStore et obtenir l'URI
-        photoUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
-        // Lancer l'intent de la caméra
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        } else {
-            Toast.makeText(this, "Camera not available", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            // Afficher l'image capturée dans l'ImageView
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
-                imageView.setImageBitmap(bitmap);
-                Toast.makeText(this, "Photo saved successfully!", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Failed to load the image.", Toast.LENGTH_SHORT).show();
-            }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle menu item clicks here.
+        int id = item.getItemId();
+        if (id == R.id.item1) {
+            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.item2) {
+            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            return true;
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Permissions not granted", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
+        return super.onOptionsItemSelected(item);
     }
 }
