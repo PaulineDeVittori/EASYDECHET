@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/image_fond"
@@ -9,62 +10,72 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="252dp" />
+        android:id="@+id/myImageView"
+        android:layout_width="369dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="154dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTakePhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pg1" />
 
     <Button
         android:id="@+id/buttonTakePhoto"
         android:layout_width="182dp"
         android:layout_height="48dp"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="43dp"
-        android:text="Take Photo"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginBottom="63dp"
+        android:text="Prendre une photo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnl2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/open_activity" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/boutonRetour" />
 
     <TextView
         android:id="@+id/pg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="2dp"
         android:gravity="center"
-        android:text="Page pour prendre des photos"
-        android:textSize="28dp"
+        android:text="Veuillez prendre votre déchet en photo"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/open_activity"
+        android:id="@+id/boutonRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginEnd="122dp"
-        android:layout_marginBottom="204dp"
-        android:text="Prendre une photo"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="518dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="62dp"
+        android:text="Retour"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonTakePhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pg1" />
 
     <Button
-        android:id="@+id/btnl2"
+        android:id="@+id/goToRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="512dp"
-        android:layout_marginEnd="16dp"
-        android:text="Retour"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="62dp"
+        android:text="Suivant"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pg1" />
+        app:layout_constraintStart_toEndOf="@+id/buttonTakePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/myImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

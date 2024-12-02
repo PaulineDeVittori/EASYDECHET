@@ -1,5 +1,10 @@
 package com.example.easydechet;
 
+import android.os.Bundle;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+
 import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -75,53 +80,23 @@ import androidx.core.content.ContextCompat;
 
 import java.io.OutputStream;
 
-public class MainActivity extends AppCompatActivity {
-
+public class Historique extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.historique);
 
-        Button boutonHist1 = (Button) findViewById(R.id.button);
-        Button btn = (Button) findViewById(R.id.btnl);
+        Button BoutonRetour = (Button) findViewById(R.id.button2);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        BoutonRetour.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PrendrePhoto.class);
+                Intent intent = new Intent(Historique.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        boutonHist1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Historique.class);
-                startActivity(intent);
-            }
-        });
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle menu item clicks here.
-        int id = item.getItemId();
-        if (id == R.id.item1) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.item2) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
-            return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
 }
