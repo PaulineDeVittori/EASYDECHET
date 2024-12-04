@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+
 public class PrendrePhoto extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PERMISSIONS = 101;
